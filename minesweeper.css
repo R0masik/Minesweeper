@@ -1,0 +1,179 @@
+html {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(#7880FD, #D3D6E5);
+}
+
+/*верхний блок*/
+.topDiv {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.topDiv > .title {
+    margin: 8px;
+}
+
+.topDiv > .instruct {
+    margin: 8px;
+}
+
+/*окно настроек*/
+.dialog {
+    background-color: #EEE;
+    border: 1px solid #444;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    z-index: 1;
+}
+
+.dialog-title {
+    color: white;
+    font-weight: bold;
+    background-color: #06F;
+}
+
+.dialog-close {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 15px;
+}
+
+.dialog-text-input {
+    width: 30px;
+    font-size: 12px;
+}
+
+.dialog-btn {
+    text-align: center;
+}
+
+.dialog td {
+    padding: 3px;
+    white-space: nowrap;
+}
+
+.dialog input[type="checkbox"], .dialog input[type="radio"] {
+    margin: 0 3px 0 0;
+    vertical-align: top;
+    padding: 0;
+}
+
+/*игровое поле*/
+.table {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+.table > .innerTable1 {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.innerTable1 > .innerTable2 {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.innerTable2 > table {
+    border: 2px solid #555555;
+    display: inline-block;
+}
+
+/*иконки для ячеек поля*/
+.cell {
+    border: 1px solid #444;
+    width: 18px;
+    height: 18px;
+}
+
+.close {
+    background: url('icons/close.png') 100% 100% no-repeat;
+}
+
+.open0 {
+    background: url('icons/open0.png') 100% 100% no-repeat;
+}
+
+.open1 {
+    background: url('icons/open1.png') 100% 100% no-repeat;
+}
+
+.open2 {
+    background: url('icons/open2.png') 100% 100% no-repeat;
+}
+
+.open3 {
+    background: url('icons/open3.png') 100% 100% no-repeat;
+}
+
+.open4 {
+    background: url('icons/open4.png') 100% 100% no-repeat;
+}
+
+.open5 {
+    background: url('icons/open5.png') 100% 100% no-repeat;
+}
+
+.open6 {
+    background: url('icons/open6.png') 100% 100% no-repeat;
+}
+
+.open7 {
+    background: url('icons/open7.png') 100% 100% no-repeat;
+}
+
+.open8 {
+    background: url('icons/open8.png') 100% 100% no-repeat;
+}
+
+.flag {
+    background: url('icons/flag.png') 100% 100% no-repeat;
+}
+
+.bombClicked {
+    background: url('icons/bombClicked.png') 100% 100% no-repeat;
+}
+
+.bombMisFlagged {
+    background: url('icons/bombMisFlagged.png') 100% 100% no-repeat;
+}
+
+.bombLeft {
+    background: url('icons/bombLeft.png') 100% 100% no-repeat;
+}
+
+/*нижний блок*/
+.botDiv {
+    width: 100%;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.bombDiv > .bombLeftCount {
+    display: inline;
+}
+
+.bombDiv > .bomb {
+    display: inline;
+}
+
+.timeDiv > .timePassed {
+    display: inline;
+}
+
+.timeDiv > .time {
+    display: inline;
+}

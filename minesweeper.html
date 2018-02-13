@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minesweeper</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css"
+          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/overcast/jquery-ui.css"/>
+    <script type="text/javascript" src="minesweeper.js"></script>
+    <link href="minesweeper.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<!-- верхний информационный блок -->
+<div class="topDiv">
+    <h1 class="title">
+        Игра "Сапер"
+    </h1>
+    <h3 class="instruct">
+        ЛКМ - открыть ячейку, ПКМ - поставить флажок.
+    </h3>
+    <div class="settingsBtn">
+        <button id="settBtn">Параметры игры</button>
+    </div>
+</div>
+
+<!-- окно параметров -->
+<table cellspacing="0" cellpadding="2" id="settings" class="dialog">
+    <tr class="dialog-title">
+        <td style="padding: 3px;">Игра</td>
+        <td colspan="3" style="padding: 3px;">
+            <div style="text-align: right;">
+                <a href="#" id="settings-close" class="dialog-close" title="close this box">&times;</a>
+            </div>
+        </td>
+    </tr>
+    <tr style="background-color: #DDDDDD;">
+        <td></td>
+        <td>Размер поля</td>
+        <td>Мины</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="mode" id="beginner" checked="checked"/>
+            <label for="beginner"><strong>Новичок</strong></label>
+        </td>
+        <td>9</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="mode" id="intermediate"/>
+            <label for="intermediate"><strong>Любитель</strong></label>
+        </td>
+        <td>16</td>
+        <td>40</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="mode" id="expert"/>
+            <label for="expert"><strong>Профессионал</strong></label>
+        </td>
+        <td>22</td>
+        <td>99</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="mode" id="custom"/>
+            <label for="custom"><strong>Особый</strong></label>
+        </td>
+        <td><input type="text" value="20" id="customSize" class="dialog-text-input"
+                   onfocus="$('#custom').attr('checked', true);"/></td>
+        <td><input type="text" value="145" id="customBombs" class="dialog-text-input"
+                   onfocus="$('#custom').attr('checked', true);"/></td>
+    </tr>
+    <tr style="background-color: #DDDDDD;">
+        <td colspan="3">
+            <div class="dialog-btn">
+                <button id="newGameBtn">Новая игра</button>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!-- игровое поле -->
+<div class="table">
+    <div class="innerTable1">
+        <div class="innerTable2">
+            <table oncontextmenu="return false;" border="1">
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- нижний информационный блок -->
+<div class="botDiv">
+    <div class="bombDiv">
+        <h2 class="bombLeftCount">
+            Осталось бомб:
+        </h2>
+        <h2 class="bomb">
+        </h2>
+    </div>
+    <div class="timeDiv">
+        <h2 class="timePassed">
+            Времени прошло:
+        </h2>
+        <h2 class="time">
+        </h2>
+    </div>
+</div>
+</body>
+</html>
