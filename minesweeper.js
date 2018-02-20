@@ -32,8 +32,8 @@ function newGame() {
 
 // установка корректных размеров графических элементов
 function setFieldSize() {
-    // нужная высота тела страницы = высота страницы - верхний и нижний отступы body
-    var bodyH = $('html').height() - 2 * parseInt($('body').css("margin-top"), 10);
+    // нужная высота тела страницы = высота страницы (целое значение) - верхний и нижний отступы body
+    var bodyH = parseInt($('html').height(), 10) - 2 * parseInt($('body').css("margin-top"), 10);
     var topDivH = $('.topDiv').height();
     // смещение для botDiv (также является высотой table) = высота тела - высота topDiv - высота botDiv
     var botDivOffset = bodyH - topDivH - $('.botDiv').height();
@@ -118,7 +118,7 @@ function fillArray(curInd, availBombCountParam) {
     if (availBombCountParam !== 0) fillArray(curInd, availBombCountParam);
 }
 
-// обработка нажатия на ячейку поля
+// обработка нажатия ЛКМ на ячейку поля
 function clickCell(_id) {
     var ind = $.map(_id.split('x'), function (e) {
         return parseInt(e, 10)
@@ -257,7 +257,7 @@ $(document).ready(function () {
         return e.charCode >= 48 && e.charCode <= 57;
     })
 
-    // обработчик нажатия на ячейку
+    // обработчик щелчка мыши на ячейку поля
     $('.table').on('mousedown', '.cell', function (e) {
         if (!gameOverKey)
             if ($(this).hasClass("close") || $(this).hasClass("flag"))
