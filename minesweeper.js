@@ -5,7 +5,7 @@ var winKey = 0;             // флаг победы
 var gameOverKey = 0;        // флаг окончания игры
 
 var arr = [];               // массив - игровое поле (0 - нет бомбы, 1 - бомба)
-var flaggedBombCount = 0;       // количество бомб, помеченных флажками
+var flaggedBombCount = 0;   // количество бомб, помеченных флажками
 var openCellsCount = 0;     // количество открытых ячеек
 
 var timer = null;           // таймер
@@ -237,6 +237,34 @@ function allField() {
         }
 }
 
+// открытие ячеек в радиусе 1 клетки при клике на ячейку с цифрой
+function openSurroundCells(_id) {
+    var ind = $.map(_id.split('x'), function (e) {
+        return parseInt(e, 10)
+    });
+    var imax = setIndMax(ind[0]);
+    var imin = setInd(ind[0]);
+    var jmax = setIndMax(ind[1]);
+    var jmin = setInd(ind[1]);
+    var flagsAround = 0;
+    for (var i = imin; i <= imax; i++)
+        for (var j = jmin; j <= jmax; j++) {
+            var cellId = '#' + i + 'x' + j;
+            // координаты ячейки, для которой выполняется
+            // проверка в радиусе 1 клетки
+            if ((i !== ind[0] || j !== ind[1]) && $(cellId).hasClass('flag'))
+                flagsAround++;
+        }
+    var cellClass = $('#' + _id).attr("class");
+    if (flagsAround.toString() === cellClass[cellClass.length - 1])
+        for (var i = imin; i <= imax; i++)
+            for (var j = jmin; j <= jmax; j++) {
+                cellId = '#' + i + 'x' + j;
+                if ((i !== ind[0] || j !== ind[1]) && $(cellId).hasClass('close'))
+                    clickCell(i + 'x' + j);
+            }
+}
+
 // функции, реализующиеся при загрузке страницы
 $(document).ready(function () {
 
@@ -255,14 +283,18 @@ $(document).ready(function () {
     // валидатор для ввода корректных значений в поля настроек
     $('.dialog-text-input').on('keypress', function (e) {
         return e.charCode >= 48 && e.charCode <= 57;
-    })
+    });
 
     // обработчик щелчка мыши на ячейку поля
     $('.table').on('mousedown', '.cell', function (e) {
         if (!gameOverKey)
-            if ($(this).hasClass("close") || $(this).hasClass("flag"))
-                if (e.which === 1 && !$(this).hasClass("flag"))
-                    clickCell(this.id);
+            if ($(this).hasClass("close") || $(this).hasClass("flag") || $(this).attr("class").indexOf('open') + 1)
+                if (e.which === 1 && !$(this).hasClass("flag")) {
+                    if ($(this).hasClass("close"))
+                        clickCell(this.id);
+                    else
+                        openSurroundCells(this.id);
+                }
                 else if (e.which === 3) {
                     if ($(this).hasClass('close')) {
                         $(this).removeClass('close').addClass('flag');
@@ -273,21 +305,21 @@ $(document).ready(function () {
                         decFlaggedBombCount();
                     }
                 }
-    })
+    });
 
     // открытие/закрытие окна настроек
     $('#settBtn, #settings-close').on('click', function () {
         $('#settings').toggle();
         setFieldSize();
-    })
+    });
 
     // обработчик нажатия на кнопку новой игры
     $('#newGameBtn').on('click', function () {
         $('#settBtn').click();
         newGame();
-    })
+    });
 
-    $(window).resize(function() {
+    $(window).resize(function () {
         setFieldSize();
     });
 });
